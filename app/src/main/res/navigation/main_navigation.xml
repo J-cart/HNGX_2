@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation.xml"
+    app:startDestination="@id/resume">
+
+    <fragment
+        android:id="@+id/resume"
+        android:name="com.tutorials.hngx2.Resume"
+        android:label="fragment_resume"
+        tools:layout="@layout/fragment_resume" >
+        <action
+            android:id="@+id/action_resume_to_editResume"
+            app:destination="@id/editResume" />
+    </fragment>
+    <fragment
+        android:id="@+id/editResume"
+        android:name="com.tutorials.hngx2.EditResume"
+        android:label="fragment_edit_resume"
+        tools:layout="@layout/fragment_edit_resume" />
+</navigation>

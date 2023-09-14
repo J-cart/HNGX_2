@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.tutorials.hngx2.databinding.FragmentResumeBinding
 
 
@@ -33,6 +34,11 @@ class Resume : Fragment() {
             fullNameText.text = DataBank.profile.fullName
             locationText.text = DataBank.profile.location
             summaryText.text = DataBank.profile.summary
+
+            editBtn.setOnClickListener {
+                val route = ResumeDirections.actionResumeToEditResume()
+                findNavController().navigate(route)
+            }
         }
     }
 

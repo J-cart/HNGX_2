@@ -27,6 +27,8 @@ class ExperienceAdapter(private val isEditable: Boolean) : ListAdapter<Experienc
                 jobTitleText.text = experience.jobTitle
                 companyText.text = experience.company.ifEmpty { "Nil" }
                 dateText.text = experience.date.ifEmpty { "---" }
+                removeListener?.let { it(experience) }
+
             }
         }
 
@@ -49,7 +51,7 @@ class ExperienceAdapter(private val isEditable: Boolean) : ListAdapter<Experienc
     companion object {
         val diffObject = object : DiffUtil.ItemCallback<Experience>() {
             override fun areItemsTheSame(oldItem: Experience, newItem: Experience): Boolean {
-                return oldItem.hashCode() == newItem.hashCode()
+                return oldItem.company == newItem.company
             }
 
             override fun areContentsTheSame(oldItem: Experience, newItem: Experience): Boolean {
@@ -58,10 +60,11 @@ class ExperienceAdapter(private val isEditable: Boolean) : ListAdapter<Experienc
         }
     }
 
-    private var listener: ((Experience) -> Unit)? = null
+    private var removeListener: ((Experience) -> Unit)? = null
 
-    fun adapterClickListener(listener: (Experience) -> Unit) {
-        this.listener = listener
+    fun adapterDeleteClickListener(listener: (Experience) -> Unit) {
+        this.removeListener = listener
     }
+
 
 }

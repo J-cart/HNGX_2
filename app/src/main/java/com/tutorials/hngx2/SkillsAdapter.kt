@@ -23,6 +23,7 @@ class SkillsAdapter(private val isEditable: Boolean) : ListAdapter<String, Skill
                     binding.removeBtn.visibility = View.GONE
                 }
                 skillText.text = skill
+                removeListener?.let { it(skill) }
             }
         }
 
@@ -45,19 +46,19 @@ class SkillsAdapter(private val isEditable: Boolean) : ListAdapter<String, Skill
     companion object {
         val diffObject = object : DiffUtil.ItemCallback<String>() {
             override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
-                return oldItem.hashCode() == newItem.hashCode()
+                return oldItem.count() == newItem.count()
             }
 
             override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
-                return oldItem.length == newItem.length && oldItem.hashCode() == newItem.hashCode()
+                return oldItem.length == newItem.length && oldItem.count() == newItem.count()
             }
         }
     }
 
-    private var listener: ((String) -> Unit)? = null
+    private var removeListener: ((String) -> Unit)? = null
 
-    fun adapterClickListener(listener: (String) -> Unit) {
-        this.listener = listener
+    fun adapterDeleteClickListener(listener: (String) -> Unit) {
+        this.removeListener = listener
     }
 
 }

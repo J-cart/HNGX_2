@@ -2,10 +2,11 @@ package com.tutorials.hngx2
 
 import com.tutorials.hngx2.model.Experience
 import com.tutorials.hngx2.model.ResumeProfile
+import kotlinx.coroutines.flow.MutableStateFlow
 
 object DataBank {
 
-    private val skills = mutableListOf(
+    private val skills = arrayListOf(
         "Team player",
         "Hard working",
         "Committed",
@@ -15,7 +16,7 @@ object DataBank {
         "Fast learner",
     )
 
-    private val experience = mutableListOf(
+    private val experience = arrayListOf(
         Experience(
             jobTitle = "Android Developer",
             company = "Facebook",

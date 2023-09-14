@@ -5,14 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.tutorials.hngx2.arch.ResumeViewModel
 import com.tutorials.hngx2.databinding.FragmentResumeBinding
+import kotlinx.coroutines.launch
 
 
 class Resume : Fragment() {
     private lateinit var binding: FragmentResumeBinding
     private val skillsAdapter by lazy { SkillsAdapter(false) }
     private val expAdapter by lazy { ExperienceAdapter(false) }
+    private val viewModel by activityViewModels<ResumeViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,12 +34,20 @@ class Resume : Fragment() {
         binding.apply {
             experienceRv.adapter = expAdapter
             skillsRv.adapter = skillsAdapter
-            skillsAdapter.submitList(DataBank.profile.skills)
-            expAdapter.submitList(DataBank.profile.experience)
-            jobTitleText.text = DataBank.profile.jobTitle
-            fullNameText.text = DataBank.profile.fullName
-            locationText.text = DataBank.profile.location
-            summaryText.text = DataBank.profile.summary
+
+            lifecycleScope.launch {
+                viewModel.profileFlow.collect{
+                    emptyExpText.isVisible = it.experience.isEmpty()
+                    emptySkillsText.isVisible = it.skills.isEmpty()
+                    skillsAdapter.submitList(it.skills)
+                    expAdapter.submitList(it.experience)
+                    jobTitleText.text = it.jobTitle
+                    fullNameText.text = it.fullName
+                    locationText.text = it.location
+                    summaryText.text = it.summary
+                }
+            }
+
 
             editBtn.setOnClickListener {
                 val route = ResumeDirections.actionResumeToEditResume()

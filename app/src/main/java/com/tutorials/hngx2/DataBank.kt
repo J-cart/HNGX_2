@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 
 object DataBank {
 
-    private val skills = arrayListOf(
+    private val skills = listOf(
         "Team player",
         "Hard working",
         "Committed",
@@ -16,7 +16,7 @@ object DataBank {
         "Fast learner",
     )
 
-    private val experience = arrayListOf(
+   private val experience = listOf(
         Experience(
             jobTitle = "Android Developer",
             company = "Facebook",
@@ -48,7 +48,7 @@ object DataBank {
         fullName = "John Doe",
         jobTitle = "Android Engineer",
         location = "Mars, Milky way",
-        summary = "Independent,self- motivated and personable android developer eager to" +
+        summary = "Independent, self- motivated and personable android developer eager to" +
                 " join as an intern to help and apply my knowledge and skills to a real-world setting and make" +
                 " a meaningful contribution to the world of technology.",
         skills = skills,

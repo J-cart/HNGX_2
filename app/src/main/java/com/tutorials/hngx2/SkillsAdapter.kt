@@ -23,7 +23,9 @@ class SkillsAdapter(private val isEditable: Boolean) : ListAdapter<String, Skill
                     binding.removeBtn.visibility = View.GONE
                 }
                 skillText.text = skill
-                removeListener?.let { it(skill) }
+                removeBtn.setOnClickListener {
+                    removeListener?.let { it(skill) }
+                }
             }
         }
 

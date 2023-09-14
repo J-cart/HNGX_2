@@ -192,20 +192,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/experience_holder" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/experience_rv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:clipChildren="false"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/experience_holder"
-        app:layout_constraintStart_toStartOf="@+id/experience_holder"
-        app:layout_constraintTop_toBottomOf="@+id/experience_holder"
-        tools:itemCount="4"
-        tools:listitem="@layout/experience_viewholder" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/experience_rv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:clipChildren="false"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/experience_holder"
+            app:layout_constraintStart_toStartOf="@+id/experience_holder"
+            app:layout_constraintTop_toBottomOf="@+id/experience_holder"
+            tools:itemCount="4"
+            tools:listitem="@layout/experience_viewholder" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

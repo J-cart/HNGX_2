@@ -187,7 +187,7 @@ class EditResume : Fragment() {
 
     }
 
-    fun getShortDate(date: Long): String {
+   private fun getShortDate(date: Long): String {
         return SimpleDateFormat("MMM dd,yy", Locale.getDefault()).format(date)
     }
 

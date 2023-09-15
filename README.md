@@ -23,6 +23,7 @@ Appetize.io [App](https://appetize.io/app/arhwy2vjskv6wbl5qvlbimkhha?device=pixe
 ## Features to be added
 - [ ] Dynamically adding data without hardcoding the values
 - [ ] Language Localization
+- [ ] Data storage 
 
 
 ## Side notes

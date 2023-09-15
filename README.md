@@ -1,6 +1,6 @@
 
 # HNGX Stage2 task
-<h1 align="center">My Details</h1>
+<h1 align="center">Resume</h1>
   This is a editable mobile resume
   
   ## Architecture

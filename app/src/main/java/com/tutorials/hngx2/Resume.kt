@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import coil.load
 import com.tutorials.hngx2.arch.ResumeViewModel
 import com.tutorials.hngx2.databinding.FragmentResumeBinding
 import kotlinx.coroutines.launch
@@ -37,6 +38,10 @@ class Resume : Fragment() {
 
             lifecycleScope.launch {
                 viewModel.profileFlow.collect{
+                    binding.profileImg.load(it.profileImg){
+                        placeholder(R.drawable.ic_launcher_foreground)
+                        error(R.drawable.ic_launcher_foreground)
+                    }
                     emptyExpText.isVisible = it.experience.isEmpty()
                     emptySkillsText.isVisible = it.skills.isEmpty()
                     skillsAdapter.submitList(it.skills)

@@ -82,6 +82,21 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialComponents.MaterialCalendar.Day" />
 
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/edit_img_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="10dp"
+                android:text="Edit"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/profile_img"
+                app:layout_constraintStart_toStartOf="@+id/profile_img"
+                app:layout_constraintTop_toBottomOf="@+id/profile_img" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/full_name_box"
@@ -160,12 +175,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/location_box">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
                     android:id="@+id/profile_summary_text"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="150dp"
                     android:hint="Profile Summary"
-                    android:inputType="text" />
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -372,6 +387,14 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_end="186dp"
                 app:layout_constraintGuide_percent="0.5" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/date_to_box"
+                />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

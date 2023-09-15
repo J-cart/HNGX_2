@@ -20,6 +20,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.tutorials.hngx2.arch.ResumeViewModel
 import com.tutorials.hngx2.databinding.FragmentEditResumeBinding
 import com.tutorials.hngx2.model.Experience
@@ -28,6 +30,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class EditResume : Fragment() {
@@ -36,6 +40,8 @@ class EditResume : Fragment() {
     private val expAdapter by lazy { ExperienceAdapter(true) }
     private val viewModel by activityViewModels<ResumeViewModel>()
     private var imageUri:String? = null
+    private var startDate:Long? = null
+    private var endDate:Long? = null
 
 
     override fun onCreateView(
@@ -84,20 +90,23 @@ class EditResume : Fragment() {
 
             }
             addExpBtn.setOnClickListener {
-                val experience = Experience(
-                    jobTitle = experienceInputText.text.toString(),
-                    company = experienceCompanyText.text.toString(),
-                    date = dateFromText.text.toString() + " " + dateToText.text
-                )
-                addExperience(experience)
-                experienceInputText.text?.clear()
-                experienceCompanyText.text?.clear()
-                dateFromText.text?.clear()
-                dateToText.text?.clear()
+               addProfileExperience()
             }
 
             editImgBtn.setOnClickListener {
                 imgSelector()
+            }
+            dateFromText.setOnClickListener {
+                dateDialog {
+                    startDate = it
+                    dateFromText.setText(getShortDate(it))
+                }
+            }
+            dateToText.setOnClickListener {
+                dateDialog {
+                    startDate = it
+                    dateToText.setText(getShortDate(it))
+                }
             }
 
             saveBtn.setOnClickListener {
@@ -177,4 +186,84 @@ class EditResume : Fragment() {
         requestAccountImgPicker.launch(intent)
 
     }
+
+    fun getShortDate(date: Long): String {
+        return SimpleDateFormat("MMM dd,yy", Locale.getDefault()).format(date)
+    }
+
+    private fun dateDialog(action:(Long)->Unit){
+        val today = MaterialDatePicker.todayInUtcMilliseconds()
+        val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+
+        calendar.timeInMillis = today
+        calendar[Calendar.MONTH] = calendar[Calendar.MONTH]
+
+        val constraintsBuilder =
+            CalendarConstraints.Builder()
+                .setEnd(calendar.timeInMillis)
+                .build()
+
+        val datePicker =
+            MaterialDatePicker.Builder.datePicker()
+                .setTitleText("Select date")
+                .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                .setCalendarConstraints(constraintsBuilder)
+                .build()
+        datePicker.addOnPositiveButtonClickListener {
+            action(it)
+            Toast.makeText(requireContext(), getShortDate(it), Toast.LENGTH_SHORT)
+                .show()
+
+        }
+        datePicker.addOnCancelListener {
+            it.dismiss()
+        }
+        datePicker.show(this@EditResume.childFragmentManager,"Tag")
+    }
+
+    private fun checkIfDateIsPresent(date: Long):Boolean{
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = date
+
+         val tCalendar = Calendar.getInstance()
+
+        if (calendar[Calendar.MONTH] == tCalendar[Calendar.MONTH]){
+            return true
+        }
+        return false
+
+    }
+
+    private fun addProfileExperience() {
+        binding.apply {
+
+            val startingDate = dateFromText.text
+            val endingDate = dateToText.text
+            val jobTitle = experienceInputText.text
+
+            if (startingDate.toString().trim().isEmpty() || endingDate.toString().trim().isEmpty()) {
+                Toast.makeText(requireContext(), "Date can't be empty", Toast.LENGTH_SHORT).show()
+                return
+            }
+            if (jobTitle.toString().trim().isEmpty()) {
+                Toast.makeText(requireContext(), "Job title can't be empty", Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            val date = if (checkIfDateIsPresent(endDate?:0L)) "Present" else getShortDate(endDate?:0L)
+
+            val experience = Experience(
+                jobTitle = experienceInputText.text.toString(),
+                company = experienceCompanyText.text.toString(),
+                date = getShortDate(startDate ?: 0L) + " - " + date
+            )
+            addExperience(experience)
+            experienceInputText.text?.clear()
+            experienceCompanyText.text?.clear()
+            dateFromText.text?.clear()
+            dateToText.text?.clear()
+        }
+    }
+
+
 }

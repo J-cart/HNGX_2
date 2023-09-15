@@ -9,6 +9,8 @@ import kotlinx.coroutines.flow.update
 class ResumeViewModel : ViewModel() {
 
     var profileFlow = MutableStateFlow<ResumeProfile>(ResumeProfile())
+    var skillsFlow = MutableStateFlow<List<String>>(emptyList())
+    var experienceFlow = MutableStateFlow<List<Experience>>(emptyList())
 
 
    /* init {
@@ -16,33 +18,33 @@ class ResumeViewModel : ViewModel() {
     }*/
 
     fun addExperience(experience: Experience) {
-        val currentList = profileFlow.value.experience.toMutableList()
+        val currentList = experienceFlow.value.toMutableList()
         currentList.add(experience)
-        profileFlow.update {
-            it.copy(experience = currentList.toList())
+        experienceFlow.update {
+           currentList.toList()
         }
     }
 
     fun removeExperience(experience: Experience) {
-        val currentList = profileFlow.value.experience.toMutableList()
+        val currentList = experienceFlow.value.toMutableList()
         currentList.remove(experience)
-        profileFlow.update {
-            it.copy(experience = currentList.toList())
+        experienceFlow.update {
+           currentList.toList()
         }
     }
     fun addSkill(skill: String) {
-        val currentList = profileFlow.value.skills.toMutableList()
+        val currentList = skillsFlow.value.toMutableList()
         currentList.add(skill)
-        profileFlow.update {
-            it.copy(skills = currentList.toList())
+        skillsFlow.update {
+            currentList.toList()
         }
     }
 
     fun removeSkill(skill: String) {
-        val currentList = profileFlow.value.skills.toMutableList()
+        val currentList = skillsFlow.value.toMutableList()
         currentList.remove(skill)
-        profileFlow.update {
-            it.copy(skills = currentList.toList())
+        skillsFlow.update {
+           currentList.toList()
         }
     }
 

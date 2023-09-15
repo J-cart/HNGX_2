@@ -45,14 +45,24 @@ class Resume : Fragment() {
                         placeholder(R.drawable.ic_launcher_foreground)
                         error(R.drawable.ic_launcher_foreground)
                     }
-                    emptyExpText.isVisible = it.experience.isEmpty()
-                    emptySkillsText.isVisible = it.skills.isEmpty()
-                    skillsAdapter.submitList(it.skills)
-                    expAdapter.submitList(it.experience)
+
                     jobTitleText.text = it.jobTitle.ifEmpty { resources.getString(R.string.job_title) }
                     fullNameText.text = it.fullName.ifEmpty { resources.getString(R.string.profile_name) }
                     locationText.text = it.location.ifEmpty { resources.getString(R.string.location) }
                     summaryText.text = it.summary.ifEmpty { resources.getString(R.string.profile_summary) }
+                }
+            }
+
+            lifecycleScope.launch {
+                viewModel.skillsFlow.collect{
+                    emptySkillsText.isVisible = it.isEmpty()
+                    skillsAdapter.submitList(it)
+                }
+            }
+            lifecycleScope.launch {
+                viewModel.experienceFlow.collect {
+                    emptyExpText.isVisible = it.isEmpty()
+                    expAdapter.submitList(it)
                 }
             }
 

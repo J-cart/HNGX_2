@@ -25,6 +25,7 @@ import com.tutorials.hngx2.databinding.FragmentEditResumeBinding
 import com.tutorials.hngx2.data.model.Experience
 import com.tutorials.hngx2.data.model.ResumeProfile
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
@@ -66,9 +67,17 @@ class EditResume : Fragment() {
                     jobTitleText.setText(it.jobTitle)
                     locationText.setText(it.location)
                     profileSummaryText.setText(it.summary)
-                    skillsAdapter.submitList(it.skills)
-                    expAdapter.submitList(it.experience)
+                }
+            }
 
+            lifecycleScope.launch {
+                viewModel.skillsFlow.collect{
+                    skillsAdapter.submitList(it)
+                }
+            }
+            lifecycleScope.launch {
+                viewModel.experienceFlow.collect {
+                    expAdapter.submitList(it)
                 }
             }
 
@@ -128,8 +137,6 @@ class EditResume : Fragment() {
                 jobTitle = jobTitleText.text.toString().trim(),
                 location = locationText.text.toString().trim(),
                 summary = profileSummaryText.text.toString().trim(),
-                skills = skillsAdapter.currentList.toList(),
-                experience = expAdapter.currentList.toList()
             )
             viewModel.updateProfile(resume)
         }

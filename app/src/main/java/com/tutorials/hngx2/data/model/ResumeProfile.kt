@@ -6,6 +6,4 @@ data class ResumeProfile(
     val jobTitle: String = "",
     val location: String = "",
     val summary: String = "",
-    val skills: List<String> = emptyList(),
-    val experience: List<Experience> = emptyList(),
 )

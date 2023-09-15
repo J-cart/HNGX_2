@@ -50,7 +50,5 @@ object DataBank {
         summary = "Independent, self- motivated and personable android developer eager to" +
                 " join as an intern to help and apply my knowledge and skills to a real-world setting and make" +
                 " a meaningful contribution to the world of technology.",
-        skills = skills,
-        experience = experience
     )
 }

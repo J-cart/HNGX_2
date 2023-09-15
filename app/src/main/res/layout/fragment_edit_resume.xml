@@ -135,7 +135,7 @@
                     android:id="@+id/job_title_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Job title"
+                    android:hint="@string/job_title"
                     android:inputType="text"
                     android:maxLines="1" />
 
@@ -157,7 +157,7 @@
                     android:id="@+id/location_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Location"
+                    android:hint="@string/location"
                     android:inputType="text"
                     android:maxLines="1" />
 
@@ -179,7 +179,7 @@
                     android:id="@+id/profile_summary_text"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:hint="Profile Summary"
+                    android:hint="@string/profile_summary"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -339,12 +339,11 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
                 app:hintEnabled="false"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/experience_company_box"
                 app:layout_constraintTop_toBottomOf="@+id/experience_company_box">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -353,7 +352,7 @@
                     android:layout_height="wrap_content"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:hint="Start"
+                    android:hint="Start date"
                     android:inputType="date|text"
                     android:maxLines="1" />
 
@@ -368,7 +367,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="16dp"
                 app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/add_exp_btn"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/experience_company_box">
 

@@ -104,7 +104,7 @@ class EditResume : Fragment() {
             }
             dateToText.setOnClickListener {
                 dateDialog {
-                    startDate = it
+                    endDate = it
                     dateToText.setText(getShortDate(it))
                 }
             }
@@ -211,9 +211,6 @@ class EditResume : Fragment() {
                 .build()
         datePicker.addOnPositiveButtonClickListener {
             action(it)
-            Toast.makeText(requireContext(), getShortDate(it), Toast.LENGTH_SHORT)
-                .show()
-
         }
         datePicker.addOnCancelListener {
             it.dismiss()

@@ -12,9 +12,9 @@ class ResumeViewModel : ViewModel() {
     var profileFlow = MutableStateFlow<ResumeProfile>(ResumeProfile())
 
 
-    init {
+   /* init {
         profileFlow.value = DataBank.profile
-    }
+    }*/
 
     fun addExperience(experience: Experience) {
         val currentList = profileFlow.value.experience.toMutableList()

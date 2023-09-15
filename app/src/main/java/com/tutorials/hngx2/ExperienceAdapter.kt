@@ -25,7 +25,7 @@ class ExperienceAdapter(private val isEditable: Boolean) : ListAdapter<Experienc
                     binding.removeBtn.visibility = View.GONE
                 }
                 jobTitleText.text = experience.jobTitle
-                companyText.text = experience.company.ifEmpty { "Nil" }
+                companyText.text = experience.company.ifEmpty { "--- ---" }
                 dateText.text = experience.date.ifEmpty { "---" }
                 removeBtn.setOnClickListener {
                     removeListener?.let { it(experience) }

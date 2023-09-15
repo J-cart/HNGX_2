@@ -1,9 +1,8 @@
-package com.tutorials.hngx2.arch
+package com.tutorials.hngx2.ui.arch
 
 import androidx.lifecycle.ViewModel
-import com.tutorials.hngx2.DataBank
-import com.tutorials.hngx2.model.Experience
-import com.tutorials.hngx2.model.ResumeProfile
+import com.tutorials.hngx2.data.model.Experience
+import com.tutorials.hngx2.data.model.ResumeProfile
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 

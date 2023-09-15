@@ -1,4 +1,4 @@
-package com.tutorials.hngx2
+package com.tutorials.hngx2.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,7 +10,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import coil.load
-import com.tutorials.hngx2.arch.ResumeViewModel
+import com.tutorials.hngx2.ui.adapter.ExperienceAdapter
+import com.tutorials.hngx2.R
+import com.tutorials.hngx2.ui.adapter.SkillsAdapter
+import com.tutorials.hngx2.ui.arch.ResumeViewModel
 import com.tutorials.hngx2.databinding.FragmentResumeBinding
 import kotlinx.coroutines.launch
 

@@ -1,4 +1,4 @@
-package com.tutorials.hngx2.model
+package com.tutorials.hngx2.data.model
 
 data class Experience(
     val jobTitle:String = "",

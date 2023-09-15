@@ -1,19 +1,18 @@
-package com.tutorials.hngx2
+package com.tutorials.hngx2.ui.adapter
 
-import android.text.Editable
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.tutorials.hngx2.R
 import com.tutorials.hngx2.databinding.ExperienceViewholderBinding
-import com.tutorials.hngx2.databinding.SkillsViewholderBinding
-import com.tutorials.hngx2.model.Experience
+import com.tutorials.hngx2.data.model.Experience
 
-class ExperienceAdapter(private val isEditable: Boolean) : ListAdapter<Experience, ExperienceAdapter.ViewHolder>(diffObject) {
+class ExperienceAdapter(private val isEditable: Boolean) : ListAdapter<Experience, ExperienceAdapter.ViewHolder>(
+    diffObject
+) {
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = ExperienceViewholderBinding.bind(view)
 

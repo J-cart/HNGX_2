@@ -1,9 +1,10 @@
-package com.tutorials.hngx2
+package com.tutorials.hngx2.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.tutorials.hngx2.R
 import com.tutorials.hngx2.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

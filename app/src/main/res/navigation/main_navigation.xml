@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/resume"
-        android:name="com.tutorials.hngx2.Resume"
+        android:name="com.tutorials.hngx2.ui.Resume"
         android:label="fragment_resume"
         tools:layout="@layout/fragment_resume" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/editResume"
-        android:name="com.tutorials.hngx2.EditResume"
+        android:name="com.tutorials.hngx2.ui.EditResume"
         android:label="fragment_edit_resume"
         tools:layout="@layout/fragment_edit_resume" />
 </navigation>

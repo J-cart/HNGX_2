@@ -1,8 +1,7 @@
-package com.tutorials.hngx2
+package com.tutorials.hngx2.data
 
-import com.tutorials.hngx2.model.Experience
-import com.tutorials.hngx2.model.ResumeProfile
-import kotlinx.coroutines.flow.MutableStateFlow
+import com.tutorials.hngx2.data.model.Experience
+import com.tutorials.hngx2.data.model.ResumeProfile
 
 object DataBank {
 
